@@ -34,12 +34,17 @@
 
 .keyboard__btn:hover {
     color: rgb(0, 167, 11);
+    background-color: rgba(0, 167, 11, 0.07);
 }
 
 .keyboard__btn:active {
     background: #e0e0e0;
     box-shadow: inset 4px 4px 8px #b3b3b3,
                 inset -4px -4px 8px #ffffff;
+}
+
+.keyboard__btn:hover:active {
+    background-color: rgba(0, 167, 11, 0.07);
 }
 
 .keyboard__btn_wide {
