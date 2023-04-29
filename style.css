@@ -1,6 +1,6 @@
 .keyboard__block {
     position: relative;
-    width: 705px;
+    width: 775px;
     height: 250px;
     padding: 5px;
     border-radius: 5px;
@@ -9,19 +9,18 @@
 }
 
 .keyboard__btns {
-    text-align: center;
+    text-align: left;
 }
 
 .keyboard__btn {
     position: relative;
-    width: 5.5%;
+    width: 40px;
     height: 40px;
-    margin: 3px;
+    margin: 5px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     vertical-align: top;
-    padding: 0;
     border: none;
     font-size: 1.2rem;
     outline: none;
@@ -44,7 +43,7 @@
 }
 
 .keyboard__btn_wide {
-    width: 16%;
+    width: 100px;
 }
 
 .keyboard__btn_more-wide {
@@ -67,6 +66,62 @@
     background-color: rgb(0, 167, 11);
 }
 
-.keyboard__btn_akcent {
+.backspace-btn {
+    width: 115px;
+}
+
+.tab-btn {
+    width: 54px;
+}
+
+.del-btn {
+    width: 50px;
+}
+
+.ctrl-btn {
+    width: 48px;
+}
+
+.alt-btn {
+    width: 48px;
+}
+
+.arrow-btn {
     border: 1px solid #000;
+}
+
+.arrow-btn svg path {
+    transition: fill .3s;
+}
+
+.arrow-btn:hover svg path {
+    fill: rgb(0, 167, 11);
+}
+
+.akcent-btn {
+    border: 1px solid #000;
+}
+
+.win-btn {
+    border: 1px solid #000;
+}
+
+.win-btn svg path {
+    transition: fill .3s;
+}
+
+.win-btn:hover svg path {
+    fill: rgb(0, 167, 11);
+}
+
+.space-btn {
+    width: 327px;
+}
+
+.space-btn svg path {
+    transition: fill .3s;
+}
+
+.space-btn:hover svg path {
+    fill: rgb(0, 167, 11);
 }
