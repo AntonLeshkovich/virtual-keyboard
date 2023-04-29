@@ -48,7 +48,7 @@
 }
 
 .keyboard__btn_wide {
-    width: 100px;
+    width: 102px;
 }
 
 .keyboard__btn_more-wide {
@@ -84,15 +84,15 @@
 }
 
 .ctrl-btn {
-    width: 48px;
+    width: 49px;
 }
 
 .alt-btn {
-    width: 48px;
+    width: 49px;
 }
 
 .arrow-btn {
-    border: 1px solid #000;
+    /* border: 1px solid #000; */
 }
 
 .arrow-btn svg path {
@@ -103,12 +103,12 @@
     fill: rgb(0, 167, 11);
 }
 
-.akcent-btn {
+/* .akcent-btn {
     border: 1px solid #000;
-}
+} */
 
 .win-btn {
-    border: 1px solid #000;
+    /* border: 1px solid #000; */
 }
 
 .win-btn svg path {
