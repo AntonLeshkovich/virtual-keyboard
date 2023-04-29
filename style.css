@@ -1,0 +1,72 @@
+.keyboard__block {
+    position: relative;
+    width: 705px;
+    height: 250px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #e0e0e0;
+    user-select: none;
+}
+
+.keyboard__btns {
+    text-align: center;
+}
+
+.keyboard__btn {
+    position: relative;
+    width: 5.5%;
+    height: 40px;
+    margin: 3px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: top;
+    padding: 0;
+    border: none;
+    font-size: 1.2rem;
+    outline: none;
+    border-radius: 11px;
+    background: #e0e0e0;
+    box-shadow:  4px 4px 8px #b3b3b3,
+                -4px -4px 8px #ffffff;
+    transition: color .2s;
+    cursor: pointer;
+}
+
+.keyboard__btn:hover {
+    color: rgb(0, 167, 11);
+}
+
+.keyboard__btn:active {
+    background: #e0e0e0;
+    box-shadow: inset 4px 4px 8px #b3b3b3,
+                inset -4px -4px 8px #ffffff;
+}
+
+.keyboard__btn_wide {
+    width: 16%;
+}
+
+.keyboard__btn_more-wide {
+    width: 36%;
+    max-width: 300px;
+}
+
+.keyboard__btn_with-indicator::before {
+    content: '';
+    top: 7px;
+    right: 7px;
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #000;
+}
+
+.keyboard__btn_with-indicator_active::before {
+    background-color: rgb(0, 167, 11);
+}
+
+.keyboard__btn_akcent {
+    border: 1px solid #000;
+}
