@@ -1,9 +1,9 @@
 const virtualBtnsContainer = document.querySelector('.virtual__btns');
 let lang = "en";
 
-const btnsEN = ["`", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "Backspace", "Tab", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "[", "]", "\\", "Delete", "CapsLock", "a", "s", "d", "f", "g", "h", "j", "k", "l", ";", "'", "Enter", "Shift", "z", "x", "c", "v", "b", "n", "m", ",", ".", "/", "Up", "Shift", "Control", "Meta", "Alt", "Space", "Alt", "Left", "Down", "Right", "Control"];
+const btnsEN = ["`", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "Backspace", "Tab", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "[", "]", "\\", "Delete", "CapsLock", "a", "s", "d", "f", "g", "h", "j", "k", "l", ";", "'", "Enter", "Shift", "z", "x", "c", "v", "b", "n", "m", ",", ".", "/", "&#9650;", "Shift", "Control", "Meta", "Alt", "Space", "Alt", "&#9668;", "&#9660;", "&#9658;", "Control"];
 const keyboardBtnsCodeEN = ["Backquote", "Digit1", "Digit2", "Digit3", "Digit4", "Digit5", "Digit6", "Digit7", "Digit8", "Digit9", "Digit0", "Minus", "Equal", "Backspace", "Tab", "KeyQ", "KeyW", "KeyE", "KeyR", "KeyT", "KeyY", "KeyU", "KeyI", "KeyO", "KeyP", "BracketLeft", "BracketRight", "Backslash", "Delete", "CapsLock", "KeyA", "KeyS", "KeyD", "KeyF", "KeyG", "KeyH", "KeyJ", "KeyK", "KeyL", "Semicolon", "Quote", "Enter", "ShiftLeft", "KeyZ", "KeyX", "KeyC", "KeyV", "KeyB", "KeyN", "KeyM", "Comma", "Period", "Slash", "ArrowUp", "ShiftRight", "ControlLeft", "MetaLeft", "AltLeft", "Space", "AltRight", "ArrowLeft", "ArrowDown", "ArrowRight", "ControlRight"];
-const displayedBtnsValues = ["`", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "[", "]", "\\","a", "s", "d", "f", "g", "h", "j", "k", "l", ";", "'", "z", "x", "c", "v", "b", "n", "m", ",", ".", "/"];
+const displayedBtnsValues = ["`", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "[", "]", "\\","a", "s", "d", "f", "g", "h", "j", "k", "l", ";", "'", "z", "x", "c", "v", "b", "n", "m", ",", ".", "/", "▲", "◄", "▼", "►"];
 
 if (lang === "en") {
     for (let i = 0; i < btnsEN.length; i++) {
@@ -42,28 +42,28 @@ if (lang === "en") {
             virtualBtn.classList.add('shift-btn');
         }
 
-        if (virtualBtn.textContent === "Up") {
-            virtualBtn.textContent = '';
+        if (virtualBtn.textContent === "&#9650;") {
+            // virtualBtn.textContent = '';
             virtualBtn.classList.add('arrow-btn');
-            virtualBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 10 16"><path fill="#000" d="M5 3L0 9h3v4h4V9h3L5 3z"/></svg>`;
+            virtualBtn.innerHTML = `&#9650;`;
         }
 
-        if (virtualBtn.textContent === "Left") {
+        if (virtualBtn.textContent === "&#9668;") {
             virtualBtn.textContent = '';
             virtualBtn.classList.add('arrow-btn');
-            virtualBtn.innerHTML = `<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="mdi-arrow-left-bold" width="24" height="24" viewBox="0 0 24 24"><path fill="#000" d="M20,9V15H12V19.84L4.16,12L12,4.16V9H20Z" /></svg>`;
+            virtualBtn.innerHTML = `&#9668;`;
         }
 
-        if (virtualBtn.textContent === "Down") {
+        if (virtualBtn.textContent === "&#9660;") {
             virtualBtn.textContent = '';
             virtualBtn.classList.add('arrow-btn');
-            virtualBtn.innerHTML = `<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="mdi-arrow-down-bold" width="24" height="24" viewBox="0 0 24 24"><path fill="#000" d="M9,4H15V12H19.84L12,19.84L4.16,12H9V4Z" /></svg>`;
+            virtualBtn.innerHTML = `&#9660;`;
         }
 
-        if (virtualBtn.textContent === "Right") {
+        if (virtualBtn.textContent === "&#9658;") {
             virtualBtn.textContent = '';
             virtualBtn.classList.add('arrow-btn');
-            virtualBtn.innerHTML = `<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="mdi-arrow-right-bold" width="24" height="24" viewBox="0 0 24 24"><path fill="#000" d="M4,15V9H12V4.16L19.84,12L12,19.84V15H4Z" /></svg>`;
+            virtualBtn.innerHTML = `&#9658;`;
         }
 
         if (virtualBtn.textContent === "Control") {
@@ -113,6 +113,9 @@ document.addEventListener('keydown', (e) => {
     if (document.querySelector(`[data-keycode="${pressedBtn}"]`)) {
         const pressedVirtualBtn = document.querySelector(`[data-keycode="${pressedBtn}"]`);
         pressedVirtualBtn.classList.add('virtual__btn-active');
+        if (displayedBtnsValues.includes(pressedVirtualBtn.innerHTML)) {
+            textArea.value += pressedVirtualBtn.innerHTML;
+        }
     }
 })
 
@@ -120,11 +123,16 @@ document.addEventListener('keyup', (e) => {
     const pressedBtn = e.code;
     if (document.querySelector(`[data-keycode="${pressedBtn}"]`)) {
         const pressedVirtualBtn = document.querySelector(`[data-keycode="${pressedBtn}"]`);
-        if (displayedBtnsValues.includes(pressedVirtualBtn.innerHTML)) {
-            textArea.value += pressedVirtualBtn.innerHTML;
-        }
         setTimeout(function() {
             pressedVirtualBtn.classList.remove('virtual__btn-active');
         }, 50);
     }
   });
+
+//   const arrowBtns = document.querySelectorAll('.arrow-btn');
+
+//   arrowBtns.forEach(btn => {
+//     btn.addEventListener('click', () => {
+//         textArea.value += btn.innerHTML;
+//     })
+//   })
