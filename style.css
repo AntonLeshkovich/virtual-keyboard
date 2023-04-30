@@ -96,18 +96,6 @@
     /* border: 1px solid #000; */
 }
 
-.arrow-btn svg path {
-    transition: fill .3s;
-}
-
-.arrow-btn:hover svg path {
-    fill: rgb(0, 167, 11);
-}
-
-/* .akcent-btn {
-    border: 1px solid #000;
-} */
-
 .win-btn {
     /* border: 1px solid #000; */
 }
