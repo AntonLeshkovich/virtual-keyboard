@@ -113,7 +113,7 @@ document.addEventListener('keydown', (e) => {
     if (document.querySelector(`[data-keycode="${pressedBtn}"]`)) {
         const pressedVirtualBtn = document.querySelector(`[data-keycode="${pressedBtn}"]`);
         pressedVirtualBtn.classList.add('virtual__btn-active');
-        if (displayedBtnsValues.includes(pressedVirtualBtn.innerHTML)) {
+        if (displayedBtnsValues.includes(pressedVirtualBtn.innerHTML.toLowerCase())) {
             textArea.value += pressedVirtualBtn.innerHTML;
         }
     }
