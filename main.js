@@ -129,10 +129,9 @@ document.addEventListener('keyup', (e) => {
     }
   });
 
-//   const arrowBtns = document.querySelectorAll('.arrow-btn');
 
-//   arrowBtns.forEach(btn => {
-//     btn.addEventListener('click', () => {
-//         textArea.value += btn.innerHTML;
-//     })
-//   })
+const enterBtn = document.querySelector('.enter-btn');
+
+enterBtn.addEventListener('click', () => {
+    textArea.value += "\n";
+})
