@@ -57,21 +57,6 @@
     width: 102px;
 }
 
-.virtual__btn_with-indicator::before {
-    content: '';
-    top: 7px;
-    right: 7px;
-    position: absolute;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background-color: #000;
-}
-
-.virtual__btn_with-indicator_active::before {
-    background-color: rgb(0, 167, 11);
-}
-
 .backspace-btn {
     width: 115px;
 }
@@ -82,6 +67,21 @@
 
 .del-btn {
     width: 50px;
+}
+
+.caps-indicator::before {
+    content: '';
+    top: 4px;
+    right: 7px;
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: #000;
+}
+
+.caps-indicator-active::before {
+    background-color: rgb(0, 167, 11);
 }
 
 .ctrl-btn {
