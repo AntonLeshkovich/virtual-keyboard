@@ -2,6 +2,7 @@ const virtualBtnsContainer = document.querySelector('.virtual__btns');
 let lang = "en";
 
 const btnsEN = ["`", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "Backspace", "Tab", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "[", "]", "\\", "Delete", "CapsLock", "a", "s", "d", "f", "g", "h", "j", "k", "l", ";", "'", "Enter", "Shift", "z", "x", "c", "v", "b", "n", "m", ",", ".", "/", "&#9650;", "Shift", "Control", "Meta", "Alt", "Space", "Alt", "&#9668;", "&#9660;", "&#9658;", "Control"];
+const arr_en = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 const keyboardBtnsCodeEN = ["Backquote", "Digit1", "Digit2", "Digit3", "Digit4", "Digit5", "Digit6", "Digit7", "Digit8", "Digit9", "Digit0", "Minus", "Equal", "Backspace", "Tab", "KeyQ", "KeyW", "KeyE", "KeyR", "KeyT", "KeyY", "KeyU", "KeyI", "KeyO", "KeyP", "BracketLeft", "BracketRight", "Backslash", "Delete", "CapsLock", "KeyA", "KeyS", "KeyD", "KeyF", "KeyG", "KeyH", "KeyJ", "KeyK", "KeyL", "Semicolon", "Quote", "Enter", "ShiftLeft", "KeyZ", "KeyX", "KeyC", "KeyV", "KeyB", "KeyN", "KeyM", "Comma", "Period", "Slash", "ArrowUp", "ShiftRight", "ControlLeft", "MetaLeft", "AltLeft", "Space", "AltRight", "ArrowLeft", "ArrowDown", "ArrowRight", "ControlRight"];
 const displayedBtnsValues = ["`", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "[", "]", "\\","a", "s", "d", "f", "g", "h", "j", "k", "l", ";", "'", "z", "x", "c", "v", "b", "n", "m", ",", ".", "/", "▲", "◄", "▼", "►"];
 
@@ -43,7 +44,6 @@ if (lang === "en") {
         }
 
         if (virtualBtn.textContent === "&#9650;") {
-            // virtualBtn.textContent = '';
             virtualBtn.classList.add('arrow-btn');
             virtualBtn.innerHTML = `&#9650;`;
         }
@@ -101,7 +101,7 @@ for(let i = 0; i < virtualBtns.length; i++) {
 
 virtualBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-        if (displayedBtnsValues.includes(btn.innerHTML)) {
+        if (displayedBtnsValues.includes(btn.innerHTML.toLowerCase())) {
             textArea.value += btn.innerHTML;
         }
     });
@@ -136,6 +136,10 @@ document.addEventListener('keydown', (e) => {
 
     if (pressedBtn == "Delete") {
         deleteNextChar();
+    }
+
+    if (pressedBtn == "CapsLock") {
+        toggleActiveCapsLock();
     }
 });
 
@@ -206,3 +210,31 @@ const delBtn = document.querySelector('.del-btn');
 delBtn.addEventListener('click', () => {
     deleteNextChar();
 });
+
+
+
+const capsBtn = document.querySelector('.caps-btn');
+
+capsBtn.classList.add('caps-indicator');
+
+function toggleActiveCapsLock() {
+    if (capsBtn.classList.contains('caps-indicator-active')) {
+        capsBtn.classList.remove('caps-indicator-active');
+        for (let i = 0; i < virtualBtns.length; i++) {
+            if (arr_en.includes(virtualBtns[i].innerHTML.toLowerCase())) {
+                virtualBtns[i].innerHTML = virtualBtns[i].innerHTML.toLowerCase();
+            }
+        }
+    } else {
+        capsBtn.classList.add('caps-indicator-active');
+        for (let i = 0; i < virtualBtns.length; i++) {
+            if (arr_en.includes(virtualBtns[i].innerHTML)) {
+                virtualBtns[i].innerHTML = virtualBtns[i].innerHTML.toUpperCase();
+            }
+        }
+    }
+}
+
+capsBtn.addEventListener('click', () => {
+    toggleActiveCapsLock();
+})
