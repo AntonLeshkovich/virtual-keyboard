@@ -117,7 +117,23 @@ document.addEventListener('keydown', (e) => {
             textArea.value += pressedVirtualBtn.innerHTML;
         }
     }
-})
+
+    if (pressedBtn == "Enter") {
+        textArea.value += "\n";
+    }
+
+    if (pressedBtn == "Space") {
+        textArea.value += ' ';
+    }
+
+    if (pressedBtn == "Tab") {
+        addTab();
+    }
+
+    if (pressedBtn == "Backspace") {
+        deletePrevChar();
+    }
+});
 
 document.addEventListener('keyup', (e) => {
     const pressedBtn = e.code;
@@ -131,7 +147,38 @@ document.addEventListener('keyup', (e) => {
 
 
 const enterBtn = document.querySelector('.enter-btn');
-
 enterBtn.addEventListener('click', () => {
     textArea.value += "\n";
+});
+
+function addTab() {
+    let start = textArea.selectionStart;
+    let end = textArea.selectionEnd;
+
+    textArea.value = textArea.value.substring(0, start) + "\t" + textArea.value.substring(end);
+    textArea.selectionStart = textArea.selectionEnd = start + 1;
+};
+
+const tabBtn = document.querySelector('.tab-btn');
+tabBtn.addEventListener('click', () => {
+    addTab();
 })
+
+
+const spaceBtn = document.querySelector('.space-btn');
+spaceBtn.addEventListener('click', () => {
+    textArea.value += ' ';
+});
+
+
+function deletePrevChar() {
+    let pos = textArea.selectionStart;
+    let text = textArea.value;
+    let newText = text.substring(0, pos - 1) + text.substring(pos);
+    textArea.value = newText;
+}
+
+const backspaceBtn = document.querySelector('.backspace-btn');
+backspaceBtn.addEventListener('click', () => {
+    deletePrevChar();
+});
