@@ -177,10 +177,14 @@ spaceBtn.addEventListener('click', () => {
 
 function deletePrevChar() {
     let pos = textArea.selectionStart;
-    let currVal = textArea.value;
-    let newVal = currVal.substring(0, pos - 1) + currVal.substring(pos);
-    textArea.value = newVal;
-}
+    if (pos > 0) {
+      let charBeforeCursor = textArea.value.substring(0, pos - 1);
+      let charAfterCursor = textArea.value.substring(pos);
+
+      textArea.value = charBeforeCursor + charAfterCursor;
+      textArea.selectionStart = textArea.selectionEnd = pos - 1;
+    }
+};
 
 const backspaceBtn = document.querySelector('.backspace-btn');
 backspaceBtn.addEventListener('click', () => {
