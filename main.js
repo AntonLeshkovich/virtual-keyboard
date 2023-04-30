@@ -133,6 +133,10 @@ document.addEventListener('keydown', (e) => {
     if (pressedBtn == "Backspace") {
         deletePrevChar();
     }
+
+    if (pressedBtn == "Delete") {
+        deleteNextChar();
+    }
 });
 
 document.addEventListener('keyup', (e) => {
@@ -173,12 +177,28 @@ spaceBtn.addEventListener('click', () => {
 
 function deletePrevChar() {
     let pos = textArea.selectionStart;
-    let text = textArea.value;
-    let newText = text.substring(0, pos - 1) + text.substring(pos);
-    textArea.value = newText;
+    let currVal = textArea.value;
+    let newVal = currVal.substring(0, pos - 1) + currVal.substring(pos);
+    textArea.value = newVal;
 }
 
 const backspaceBtn = document.querySelector('.backspace-btn');
 backspaceBtn.addEventListener('click', () => {
     deletePrevChar();
+});
+
+
+function deleteNextChar() {
+    let start = textArea.selectionStart;
+    let beforeVal = textArea.value.substring(0, start);
+    let afterVal = textArea.value.substring(start + 1);
+    textArea.value = beforeVal + afterVal;
+
+    textArea.selectionStart = start;
+    textArea.selectionEnd = start;
+}
+
+const delBtn = document.querySelector('.del-btn');
+delBtn.addEventListener('click', () => {
+    deleteNextChar();
 });
