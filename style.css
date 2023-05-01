@@ -6,7 +6,7 @@ body {
 h1 {
     display: inline-block;
     margin: 20px auto 0;
-    color: rgba(0, 167, 11, 0.5);
+    color: rgba(0, 167, 11, 0.6);
     cursor: default;
 }
 
@@ -114,14 +114,6 @@ textarea {
     width: 49px;
 }
 
-.arrow-btn {
-    /* border: 1px solid #000; */
-}
-
-.win-btn {
-    /* border: 1px solid #000; */
-}
-
 .win-btn svg path {
     transition: fill .3s;
 }
@@ -140,4 +132,13 @@ textarea {
 
 .space-btn:hover svg path {
     fill: rgb(0, 167, 11);
+}
+
+.info-text {
+    margin: 20px auto 0;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.3;
+    text-align: center;
+    cursor: default;
 }
