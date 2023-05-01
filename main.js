@@ -119,7 +119,11 @@ document.addEventListener('keydown', (e) => {
         const pressedVirtualBtn = document.querySelector(`[data-keycode="${pressedBtn}"]`);
         pressedVirtualBtn.classList.add('virtual__btn-active');
         if (displayedBtnsValues.includes(pressedVirtualBtn.innerHTML.toLowerCase())) {
-            textArea.value += pressedVirtualBtn.innerHTML;
+            if (e.shiftKey) {
+                textArea.value += pressedVirtualBtn.innerHTML.toUpperCase();
+            } else {
+                textArea.value += pressedVirtualBtn.innerHTML;
+            }
         }
     }
 
