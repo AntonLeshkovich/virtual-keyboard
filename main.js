@@ -339,3 +339,9 @@ capsBtn.addEventListener('click', () => {
     toggleActiveCapsLock();
 });
 
+
+const infoText = document.createElement('p');
+infoText.className = 'info-text';
+infoText.innerText = 'Клавиатура создана в операционной системе Windows.\nДля переключения языка комбинация: левыe shift + alt.';
+body.append(infoText);
+
