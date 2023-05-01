@@ -128,6 +128,15 @@ document.addEventListener('keydown', (e) => {
         }
     }
 
+    if (e.shiftKey  && e.altKey) {
+        if (lang === 'en') {
+            lang = 'ru';
+        } else {
+            lang = 'en';
+        }
+        console.log(lang)
+    }
+
     if (pressedBtn == "Enter") {
         textArea.value += "\n";
     }
