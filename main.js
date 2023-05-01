@@ -100,9 +100,14 @@ for(let i = 0; i < virtualBtns.length; i++) {
 }
 
 virtualBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
+    btn.addEventListener('click', (e) => {
         if (displayedBtnsValues.includes(btn.innerHTML.toLowerCase())) {
-            textArea.value += btn.innerHTML;
+
+            if (e.shiftKey) {
+                textArea.value += btn.innerHTML.toUpperCase();
+            } else {
+                textArea.value += btn.innerHTML;
+            }
         }
     });
 });
@@ -237,4 +242,5 @@ function toggleActiveCapsLock() {
 
 capsBtn.addEventListener('click', () => {
     toggleActiveCapsLock();
-})
+});
+
