@@ -161,7 +161,6 @@ function changeChars() {
 }
 
 
-// let textArea = document.querySelector('textarea');
 let virtualBtns = document.querySelectorAll('.virtual__btn');
 
 for(let i = 0; i < virtualBtns.length; i++) {
