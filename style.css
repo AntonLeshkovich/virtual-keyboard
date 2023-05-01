@@ -1,5 +1,27 @@
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+h1 {
+    display: inline-block;
+    margin: 20px auto 0;
+    color: rgba(0, 167, 11, 0.5);
+    cursor: default;
+}
+
+textarea {
+    display: block;
+    margin: 30px auto;
+	width: 600px;
+	height: 150px;
+    font-size: 1.3rem;
+    background-color: rgba(0, 167, 11, 0.04);
+}
+
 .virtual__block {
     position: relative;
+    margin: 0 auto;
     width: 775px;
     height: 250px;
     padding: 5px;
