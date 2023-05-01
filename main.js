@@ -1,4 +1,5 @@
 const virtualBtnsContainer = document.querySelector('.virtual__btns');
+
 let lang = "en";
 
 const btnsEN = ["`", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "Backspace", "Tab", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "[", "]", "\\", "Delete", "CapsLock", "a", "s", "d", "f", "g", "h", "j", "k", "l", ";", "'", "Enter", "Shift", "z", "x", "c", "v", "b", "n", "m", ",", ".", "/", "&#9650;", "Shift", "Control", "Meta", "Alt", "Space", "Alt", "&#9668;", "&#9660;", "&#9658;", "Control"];
@@ -7,88 +8,98 @@ const arr_en = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
 const arr_ru = ['а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'э', 'ю', 'я'];const keyboardBtnsCodeEN = ["Backquote", "Digit1", "Digit2", "Digit3", "Digit4", "Digit5", "Digit6", "Digit7", "Digit8", "Digit9", "Digit0", "Minus", "Equal", "Backspace", "Tab", "KeyQ", "KeyW", "KeyE", "KeyR", "KeyT", "KeyY", "KeyU", "KeyI", "KeyO", "KeyP", "BracketLeft", "BracketRight", "Backslash", "Delete", "CapsLock", "KeyA", "KeyS", "KeyD", "KeyF", "KeyG", "KeyH", "KeyJ", "KeyK", "KeyL", "Semicolon", "Quote", "Enter", "ShiftLeft", "KeyZ", "KeyX", "KeyC", "KeyV", "KeyB", "KeyN", "KeyM", "Comma", "Period", "Slash", "ArrowUp", "ShiftRight", "ControlLeft", "MetaLeft", "AltLeft", "Space", "AltRight", "ArrowLeft", "ArrowDown", "ArrowRight", "ControlRight"];
 const displayedBtnsValues = ["`", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "[", "]", "\\","a", "s", "d", "f", "g", "h", "j", "k", "l", ";", "'", "z", "x", "c", "v", "b", "n", "m", ",", ".", "/", "▲", "◄", "▼", "►", "ё", "й", "ц", "у", "к", "е", "н", "г", "ш", "щ", "з", "х", "ъ", "ф", "ы", "в", "а", "п", "р", "о", "л", "д", "ж", "э", "я", "ч", "с", "м", "и", "т", "ь", "б", "ю"];
 
-if (lang === "en") {
-    for (let i = 0; i < btnsEN.length; i++) {
-        const virtualBtn = document.createElement('button');
+if(localStorage.getItem("lang")) {
+    lang = localStorage.getItem("lang");
+} else {
+    lang = "en";
+}
 
-        virtualBtn.className = 'virtual__btn';
+
+for (let i = 0; i < btnsEN.length; i++) {
+    const virtualBtn = document.createElement('button');
+
+    virtualBtn.className = 'virtual__btn';
+    if (lang === 'en') {
         virtualBtn.textContent = btnsEN[i];
+    } else {
+        virtualBtn.textContent = btnsRU[i];
+    }
 
-        virtualBtnsContainer.append(virtualBtn);
+    virtualBtnsContainer.append(virtualBtn);
 
-        if (virtualBtn.textContent === "Backspace") {
-            virtualBtn.classList.add('backspace-btn');
-        }
+    if (virtualBtn.textContent === "Backspace") {
+        virtualBtn.classList.add('backspace-btn');
+    }
 
-        if (virtualBtn.textContent === "Tab") {
-            virtualBtn.classList.add('tab-btn');
-        }
+    if (virtualBtn.textContent === "Tab") {
+        virtualBtn.classList.add('tab-btn');
+    }
 
-        if (virtualBtn.textContent === "Delete") {
-            virtualBtn.textContent = "Del";
-            virtualBtn.classList.add('del-btn');
-        }
+    if (virtualBtn.textContent === "Delete") {
+        virtualBtn.textContent = "Del";
+        virtualBtn.classList.add('del-btn');
+    }
 
-        if (virtualBtn.textContent === "CapsLock") {
-            virtualBtn.classList.add('virtual__btn_wide');
-            virtualBtn.classList.add('caps-btn');
-        }
+    if (virtualBtn.textContent === "CapsLock") {
+        virtualBtn.classList.add('virtual__btn_wide');
+        virtualBtn.classList.add('caps-btn');
+    }
 
-        if (virtualBtn.textContent === "Enter") {
-            virtualBtn.classList.add('virtual__btn_wide');
-            virtualBtn.classList.add('enter-btn');
-        }
+    if (virtualBtn.textContent === "Enter") {
+        virtualBtn.classList.add('virtual__btn_wide');
+        virtualBtn.classList.add('enter-btn');
+    }
 
-        if (virtualBtn.textContent === "Shift") {
-            virtualBtn.classList.add('virtual__btn_wide');
-            virtualBtn.classList.add('shift-btn');
-        }
+    if (virtualBtn.textContent === "Shift") {
+        virtualBtn.classList.add('virtual__btn_wide');
+        virtualBtn.classList.add('shift-btn');
+    }
 
-        if (virtualBtn.textContent === "&#9650;") {
-            virtualBtn.classList.add('arrow-btn');
-            virtualBtn.innerHTML = `&#9650;`;
-        }
+    if (virtualBtn.textContent === "&#9650;") {
+        virtualBtn.classList.add('arrow-btn');
+        virtualBtn.innerHTML = `&#9650;`;
+    }
 
-        if (virtualBtn.textContent === "&#9668;") {
-            virtualBtn.textContent = '';
-            virtualBtn.classList.add('arrow-btn');
-            virtualBtn.innerHTML = `&#9668;`;
-        }
+    if (virtualBtn.textContent === "&#9668;") {
+        virtualBtn.textContent = '';
+        virtualBtn.classList.add('arrow-btn');
+        virtualBtn.innerHTML = `&#9668;`;
+    }
 
-        if (virtualBtn.textContent === "&#9660;") {
-            virtualBtn.textContent = '';
-            virtualBtn.classList.add('arrow-btn');
-            virtualBtn.innerHTML = `&#9660;`;
-        }
+    if (virtualBtn.textContent === "&#9660;") {
+        virtualBtn.textContent = '';
+        virtualBtn.classList.add('arrow-btn');
+        virtualBtn.innerHTML = `&#9660;`;
+    }
 
-        if (virtualBtn.textContent === "&#9658;") {
-            virtualBtn.textContent = '';
-            virtualBtn.classList.add('arrow-btn');
-            virtualBtn.innerHTML = `&#9658;`;
-        }
+    if (virtualBtn.textContent === "&#9658;") {
+        virtualBtn.textContent = '';
+        virtualBtn.classList.add('arrow-btn');
+        virtualBtn.innerHTML = `&#9658;`;
+    }
 
-        if (virtualBtn.textContent === "Control") {
-            virtualBtn.textContent = "Ctrl";
-            virtualBtn.classList.add('ctrl-btn');
-        }
+    if (virtualBtn.textContent === "Control") {
+        virtualBtn.textContent = "Ctrl";
+        virtualBtn.classList.add('ctrl-btn');
+    }
 
-        if (virtualBtn.textContent === "Alt") {
-            virtualBtn.classList.add('alt-btn');
-        }
+    if (virtualBtn.textContent === "Alt") {
+        virtualBtn.classList.add('alt-btn');
+    }
 
-        if (virtualBtn.textContent === "Meta") {
-            virtualBtn.textContent = '';
-            virtualBtn.classList.add('win-btn');
-            virtualBtn.innerHTML = `<?xml version="1.0" ?><!DOCTYPE svg  PUBLIC '-//W3C//DTD SVG 1.1//EN'  'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'><svg id="Capa_1" width="20" height="20" version="1.1" viewBox="0 0 480 480" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><g><path fill="#000" d="M0.2,224L0,68l192-26.1V224H0.2z M224,37.2L479.9,0v224H224V37.2z M480,256l-0.1,224L224,444V256H480z M192,439.9 L0.2,413.6l0-157.6H192V439.9z"/></g></g></svg>`;
-        }
+    if (virtualBtn.textContent === "Meta") {
+        virtualBtn.textContent = '';
+        virtualBtn.classList.add('win-btn');
+        virtualBtn.innerHTML = `<?xml version="1.0" ?><!DOCTYPE svg  PUBLIC '-//W3C//DTD SVG 1.1//EN'  'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'><svg id="Capa_1" width="20" height="20" version="1.1" viewBox="0 0 480 480" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><g><path fill="#000" d="M0.2,224L0,68l192-26.1V224H0.2z M224,37.2L479.9,0v224H224V37.2z M480,256l-0.1,224L224,444V256H480z M192,439.9 L0.2,413.6l0-157.6H192V439.9z"/></g></g></svg>`;
+    }
 
-        if (virtualBtn.textContent === "Space") {
-            virtualBtn.textContent = '';
-            virtualBtn.classList.add('space-btn');
-            virtualBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M18 9v4H6V9H4v6h16V9z"/></svg>`;
-        }
+    if (virtualBtn.textContent === "Space") {
+        virtualBtn.textContent = '';
+        virtualBtn.classList.add('space-btn');
+        virtualBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M18 9v4H6V9H4v6h16V9z"/></svg>`;
     }
 }
+
 
 function changeChars() {
     const virtualBtns = document.querySelectorAll('button');
@@ -177,6 +188,7 @@ document.addEventListener('keydown', (e) => {
             lang = 'en';
         }
         changeChars();
+        localStorage.setItem('lang', `${lang}`);
     }
 
     if (pressedBtn == "Enter") {
