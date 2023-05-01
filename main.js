@@ -1,4 +1,19 @@
-const virtualBtnsContainer = document.querySelector('.virtual__btns');
+const body =document.querySelector('body');
+
+const title = document.createElement('h1');
+title.textContent = "RSS - ВИРТУАЛЬНАЯ КЛАВИАТУРА";
+body.append(title);
+
+const textArea = document.createElement('textarea');
+body.append(textArea);
+
+const virtualBlock = document.createElement('div');
+virtualBlock.className = 'virtual__block';
+body.append(virtualBlock);
+
+const virtualBtnsContainer = document.createElement('div');
+virtualBtnsContainer.className = 'virtual__btns';
+virtualBlock.append(virtualBtnsContainer);
 
 let lang = "en";
 
@@ -146,7 +161,7 @@ function changeChars() {
 }
 
 
-let textArea = document.querySelector('textarea');
+// let textArea = document.querySelector('textarea');
 let virtualBtns = document.querySelectorAll('.virtual__btn');
 
 for(let i = 0; i < virtualBtns.length; i++) {
