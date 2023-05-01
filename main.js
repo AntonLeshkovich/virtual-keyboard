@@ -4,8 +4,8 @@ let lang = "en";
 const btnsEN = ["`", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "Backspace", "Tab", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "[", "]", "\\", "Delete", "CapsLock", "a", "s", "d", "f", "g", "h", "j", "k", "l", ";", "'", "Enter", "Shift", "z", "x", "c", "v", "b", "n", "m", ",", ".", "/", "&#9650;", "Shift", "Control", "Meta", "Alt", "Space", "Alt", "&#9668;", "&#9660;", "&#9658;", "Control"];
 const btnsRU = ["ё", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "Backspace", "Tab", "й", "ц", "у", "к", "е", "н", "г", "ш", "щ", "з", "х", "ъ", "\\", "Delete", "CapsLock", "ф", "ы", "в", "а", "п", "р", "о", "л", "д", "ж", "э", "Enter", "Shift", "я", "ч", "с", "м", "и", "т", "ь", "б", "ю", ".", "&#9650;", "Shift", "Control", "Meta", "Alt", "Space", "Alt", "&#9668;", "&#9660;", "&#9658;", "Control"];
 const arr_en = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-const keyboardBtnsCodeEN = ["Backquote", "Digit1", "Digit2", "Digit3", "Digit4", "Digit5", "Digit6", "Digit7", "Digit8", "Digit9", "Digit0", "Minus", "Equal", "Backspace", "Tab", "KeyQ", "KeyW", "KeyE", "KeyR", "KeyT", "KeyY", "KeyU", "KeyI", "KeyO", "KeyP", "BracketLeft", "BracketRight", "Backslash", "Delete", "CapsLock", "KeyA", "KeyS", "KeyD", "KeyF", "KeyG", "KeyH", "KeyJ", "KeyK", "KeyL", "Semicolon", "Quote", "Enter", "ShiftLeft", "KeyZ", "KeyX", "KeyC", "KeyV", "KeyB", "KeyN", "KeyM", "Comma", "Period", "Slash", "ArrowUp", "ShiftRight", "ControlLeft", "MetaLeft", "AltLeft", "Space", "AltRight", "ArrowLeft", "ArrowDown", "ArrowRight", "ControlRight"];
-const displayedBtnsValues = ["`", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "[", "]", "\\","a", "s", "d", "f", "g", "h", "j", "k", "l", ";", "'", "z", "x", "c", "v", "b", "n", "m", ",", ".", "/", "▲", "◄", "▼", "►"];
+const arr_ru = ['а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'э', 'ю', 'я'];const keyboardBtnsCodeEN = ["Backquote", "Digit1", "Digit2", "Digit3", "Digit4", "Digit5", "Digit6", "Digit7", "Digit8", "Digit9", "Digit0", "Minus", "Equal", "Backspace", "Tab", "KeyQ", "KeyW", "KeyE", "KeyR", "KeyT", "KeyY", "KeyU", "KeyI", "KeyO", "KeyP", "BracketLeft", "BracketRight", "Backslash", "Delete", "CapsLock", "KeyA", "KeyS", "KeyD", "KeyF", "KeyG", "KeyH", "KeyJ", "KeyK", "KeyL", "Semicolon", "Quote", "Enter", "ShiftLeft", "KeyZ", "KeyX", "KeyC", "KeyV", "KeyB", "KeyN", "KeyM", "Comma", "Period", "Slash", "ArrowUp", "ShiftRight", "ControlLeft", "MetaLeft", "AltLeft", "Space", "AltRight", "ArrowLeft", "ArrowDown", "ArrowRight", "ControlRight"];
+const displayedBtnsValues = ["`", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "[", "]", "\\","a", "s", "d", "f", "g", "h", "j", "k", "l", ";", "'", "z", "x", "c", "v", "b", "n", "m", ",", ".", "/", "▲", "◄", "▼", "►", "ё", "й", "ц", "у", "к", "е", "н", "г", "ш", "щ", "з", "х", "ъ", "ф", "ы", "в", "а", "п", "р", "о", "л", "д", "ж", "э", "я", "ч", "с", "м", "и", "т", "ь", "б", "ю"];
 
 if (lang === "en") {
     for (let i = 0; i < btnsEN.length; i++) {
@@ -90,7 +90,49 @@ if (lang === "en") {
     }
 }
 
+function changeChars() {
+    const virtualBtns = document.querySelectorAll('button');
+    for (let i = 0; i < btnsEN.length; i++) {
 
+        if (lang === 'en') {
+            virtualBtns[i].textContent = btnsEN[i];
+        } else {
+            virtualBtns[i].textContent = btnsRU[i];
+        }
+
+        if (virtualBtns[i].classList.contains('del-btn')) {
+            virtualBtns[i].textContent = "Del";
+        }
+
+        if (virtualBtns[i].textContent === "&#9650;") {
+            virtualBtns[i].innerHTML = `&#9650;`;
+        }
+
+        if (virtualBtns[i].textContent === "&#9668;") {
+            virtualBtns[i].innerHTML = `&#9668;`;
+        }
+
+        if (virtualBtns[i].textContent === "&#9660;") {
+            virtualBtns[i].innerHTML = `&#9660;`;
+        }
+
+        if (virtualBtns[i].textContent === "&#9658;") {
+            virtualBtns[i].innerHTML = `&#9658;`;
+        }
+
+        if (virtualBtns[i].classList.contains('ctrl-btn')) {
+            virtualBtns[i].textContent = "Ctrl";
+        }
+
+        if (virtualBtns[i].classList.contains('win-btn')) {
+            virtualBtns[i].innerHTML = `<?xml version="1.0" ?><!DOCTYPE svg  PUBLIC '-//W3C//DTD SVG 1.1//EN'  'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'><svg id="Capa_1" width="20" height="20" version="1.1" viewBox="0 0 480 480" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><g><path fill="#000" d="M0.2,224L0,68l192-26.1V224H0.2z M224,37.2L479.9,0v224H224V37.2z M480,256l-0.1,224L224,444V256H480z M192,439.9 L0.2,413.6l0-157.6H192V439.9z"/></g></g></svg>`;
+        }
+
+        if (virtualBtns[i].classList.contains('space-btn')) {
+            virtualBtns[i].innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M18 9v4H6V9H4v6h16V9z"/></svg>`;
+        }
+    }
+}
 
 
 let textArea = document.querySelector('textarea');
@@ -128,13 +170,13 @@ document.addEventListener('keydown', (e) => {
         }
     }
 
-    if (e.shiftKey  && e.altKey) {
+    if (e.shiftKey && e.altKey) {
         if (lang === 'en') {
             lang = 'ru';
         } else {
             lang = 'en';
         }
-        console.log(lang)
+        changeChars();
     }
 
     if (pressedBtn == "Enter") {
@@ -240,15 +282,27 @@ function toggleActiveCapsLock() {
     if (capsBtn.classList.contains('caps-indicator-active')) {
         capsBtn.classList.remove('caps-indicator-active');
         for (let i = 0; i < virtualBtns.length; i++) {
-            if (arr_en.includes(virtualBtns[i].innerHTML.toLowerCase())) {
-                virtualBtns[i].innerHTML = virtualBtns[i].innerHTML.toLowerCase();
+            if (lang === 'en') {
+                if (arr_en.includes(virtualBtns[i].innerHTML.toLowerCase())) {
+                    virtualBtns[i].innerHTML = virtualBtns[i].innerHTML.toLowerCase();
+                }
+            } else {
+                if (arr_ru.includes(virtualBtns[i].innerHTML.toLowerCase())) {
+                    virtualBtns[i].innerHTML = virtualBtns[i].innerHTML.toLowerCase();
+                }
             }
         }
     } else {
         capsBtn.classList.add('caps-indicator-active');
         for (let i = 0; i < virtualBtns.length; i++) {
-            if (arr_en.includes(virtualBtns[i].innerHTML)) {
-                virtualBtns[i].innerHTML = virtualBtns[i].innerHTML.toUpperCase();
+            if (lang === 'en') {
+                if (arr_en.includes(virtualBtns[i].innerHTML)) {
+                    virtualBtns[i].innerHTML = virtualBtns[i].innerHTML.toUpperCase();
+                }
+            } else {
+                if (arr_ru.includes(virtualBtns[i].innerHTML)) {
+                    virtualBtns[i].innerHTML = virtualBtns[i].innerHTML.toUpperCase();
+                }
             }
         }
     }
