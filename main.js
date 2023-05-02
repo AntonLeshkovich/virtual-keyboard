@@ -56,6 +56,7 @@ for (let i = 0; i < btnsEN.length; i += 1) {
   if (virtualBtn.textContent === 'CapsLock') {
     virtualBtn.classList.add('virtual__btn_wide');
     virtualBtn.classList.add('caps-btn');
+    virtualBtn.classList.add('caps-indicator');
   }
 
   if (virtualBtn.textContent === 'Enter') {
@@ -113,7 +114,7 @@ for (let i = 0; i < btnsEN.length; i += 1) {
   }
 }
 
-function changeChars() {
+const changeChars = () => {
   const virtualBtns = document.querySelectorAll('button');
   for (let i = 0; i < btnsEN.length; i += 1) {
     if (lang === 'en') {
@@ -154,6 +155,35 @@ function changeChars() {
       virtualBtns[i].innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M18 9v4H6V9H4v6h16V9z"/></svg>`;
     }
   }
+}
+
+const addTab = () => {
+  const start = textArea.selectionStart;
+  const end = textArea.selectionEnd;
+
+  textArea.value = textArea.value.substring(0, start) + "\t" + textArea.value.substring(end);
+  textArea.selectionStart = textArea.selectionEnd = start + 1;
+};
+
+const deletePrevChar = () => {
+  const pos = textArea.selectionStart;
+  if (pos > 0) {
+    const charBeforeCursor = textArea.value.substring(0, pos - 1);
+    const charAfterCursor = textArea.value.substring(pos);
+
+    textArea.value = charBeforeCursor + charAfterCursor;
+    textArea.selectionStart = textArea.selectionEnd = pos - 1;
+  }
+}
+
+const deleteNextChar = () => {
+  const start = textArea.selectionStart;
+  const beforeVal = textArea.value.substring(0, start);
+  const afterVal = textArea.value.substring(start + 1);
+  textArea.value = beforeVal + afterVal;
+
+  textArea.selectionStart = start;
+  textArea.selectionEnd = start;
 }
 
 const virtualBtns = document.querySelectorAll('.virtual__btn');
@@ -238,14 +268,6 @@ enterBtn.addEventListener('click', () => {
   textArea.value += '\n';
 });
 
-function addTab() {
-  const start = textArea.selectionStart;
-  const end = textArea.selectionEnd;
-
-  textArea.value = textArea.value.substring(0, start) + "\t" + textArea.value.substring(end);
-  textArea.selectionStart = textArea.selectionEnd = start + 1;
-};
-
 const tabBtn = document.querySelector('.tab-btn');
 tabBtn.addEventListener('click', () => {
   addTab();
@@ -256,31 +278,10 @@ spaceBtn.addEventListener('click', () => {
   textArea.value += ' ';
 });
 
-function deletePrevChar() {
-  const pos = textArea.selectionStart;
-  if (pos > 0) {
-    const charBeforeCursor = textArea.value.substring(0, pos - 1);
-    const charAfterCursor = textArea.value.substring(pos);
-
-    textArea.value = charBeforeCursor + charAfterCursor;
-    textArea.selectionStart = textArea.selectionEnd = pos - 1;
-  }
-}
-
 const backspaceBtn = document.querySelector('.backspace-btn');
 backspaceBtn.addEventListener('click', () => {
   deletePrevChar();
 });
-
-function deleteNextChar() {
-  const start = textArea.selectionStart;
-  const beforeVal = textArea.value.substring(0, start);
-  const afterVal = textArea.value.substring(start + 1);
-  textArea.value = beforeVal + afterVal;
-
-  textArea.selectionStart = start;
-  textArea.selectionEnd = start;
-}
 
 const delBtn = document.querySelector('.del-btn');
 delBtn.addEventListener('click', () => {
@@ -289,9 +290,7 @@ delBtn.addEventListener('click', () => {
 
 const capsBtn = document.querySelector('.caps-btn');
 
-capsBtn.classList.add('caps-indicator');
-
-function toggleActiveCapsLock() {
+const toggleActiveCapsLock = () => {
   if (capsBtn.classList.contains('caps-indicator-active')) {
     capsBtn.classList.remove('caps-indicator-active');
     for (let i = 0; i < virtualBtns.length; i++) {
