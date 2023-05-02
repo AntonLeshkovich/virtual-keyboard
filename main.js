@@ -16,7 +16,9 @@ virtualBlock.append(virtualBtnsContainer);
 let lang = 'en';
 
 const btnsEN = ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace', 'Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\\', 'Delete', 'CapsLock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', '\'', 'Enter', 'Shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', '&#9650;', 'Shift', 'Control', 'Meta', 'Alt', 'Space', 'Alt', '&#9668;', '&#9660;', '&#9658;', 'Control'];
+const btnsEnWithActiveShift = ['~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', 'Backspace', 'Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '{', '}', '|', 'Del', 'CapsLock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ':', '"', 'Enter', 'Shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', '<', '>', '?', '&#9650;', 'Shift', 'Ctrl', 'Meta', 'Alt', 'Space', 'Alt', '&#9668;', '&#9660;', '&#9658;', 'Ctrl'];
 const btnsRU = ['ё', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace', 'Tab', 'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ', '\\', 'Delete', 'CapsLock', 'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э', 'Enter', 'Shift', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', '.', '&#9650;', 'Shift', 'Control', 'Meta', 'Alt', 'Space', 'Alt', '&#9668;', '&#9660;', '&#9658;', 'Control'];
+const btnsRuWithActiveShift = ['ё', '!', '"', '№', ';', '%', ':', '?', '*', '(', ')', '_', '+', 'Backspace', 'Tab', 'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ', '/', 'Del', 'CapsLock', 'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э', 'Enter', 'Shift', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', ',', '&#9650;', 'Shift', 'Ctrl', 'Meta', 'Alt', 'Space', 'Alt', '&#9668;', '&#9660;', '&#9658;', 'Ctrl'];
 const arrEn = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 const arrRu = ['а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'э', 'ю', 'я'];
 const keyboardBtnsCodeEN = ['Backquote', 'Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5', 'Digit6', 'Digit7', 'Digit8', 'Digit9', 'Digit0', 'Minus', 'Equal', 'Backspace', 'Tab', 'KeyQ', 'KeyW', 'KeyE', 'KeyR', 'KeyT', 'KeyY', 'KeyU', 'KeyI', 'KeyO', 'KeyP', 'BracketLeft', 'BracketRight', 'Backslash', 'Delete', 'CapsLock', 'KeyA', 'KeyS', 'KeyD', 'KeyF', 'KeyG', 'KeyH', 'KeyJ', 'KeyK', 'KeyL', 'Semicolon', 'Quote', 'Enter', 'ShiftLeft', 'KeyZ', 'KeyX', 'KeyC', 'KeyV', 'KeyB', 'KeyN', 'KeyM', 'Comma', 'Period', 'Slash', 'ArrowUp', 'ShiftRight', 'ControlLeft', 'MetaLeft', 'AltLeft', 'Space', 'AltRight', 'ArrowLeft', 'ArrowDown', 'ArrowRight', 'ControlRight'];
@@ -322,6 +324,74 @@ const toggleActiveCapsLock = () => {
 
 capsBtn.addEventListener('click', () => {
   toggleActiveCapsLock();
+});
+
+const activeShift = () => {
+  if (capsBtn.classList.contains('caps-indicator-active')) {
+    for (let i = 0; i < virtualBtns.length; i++) {
+      if (lang === 'en') {
+        virtualBtns[i].innerHTML = btnsEnWithActiveShift[i];
+      } else {
+        virtualBtns[i].innerHTML = btnsRuWithActiveShift[i];
+      }
+    }
+  } else {
+    for (let i = 0; i < virtualBtns.length; i++) {
+      if (lang === 'en') {
+          virtualBtns[i].innerHTML = btnsEnWithActiveShift[i];
+          if (arrEn.includes(virtualBtns[i].innerHTML)) {
+            virtualBtns[i].innerHTML = virtualBtns[i].innerHTML.toUpperCase();
+          }
+      } else {
+        virtualBtns[i].innerHTML = btnsRuWithActiveShift[i];
+        if (arrRu.includes(virtualBtns[i].innerHTML)) {
+          virtualBtns[i].innerHTML = virtualBtns[i].innerHTML.toUpperCase();
+        }
+      }
+    }
+  }
+  document.querySelector('.win-btn').innerHTML = `<?xml version="1.0" ?><!DOCTYPE svg  PUBLIC '-//W3C//DTD SVG 1.1//EN'  'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'><svg id="Capa_1" width="20" height="20" version="1.1" viewBox="0 0 480 480" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><g><path fill="#000" d="M0.2,224L0,68l192-26.1V224H0.2z M224,37.2L479.9,0v224H224V37.2z M480,256l-0.1,224L224,444V256H480z M192,439.9 L0.2,413.6l0-157.6H192V439.9z"/></g></g></svg>`;
+  document.querySelector('.space-btn').innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M18 9v4H6V9H4v6h16V9z"/></svg>`;
+}
+
+const deactivateShift = () => {
+  changeChars();
+  if (capsBtn.classList.contains('caps-indicator-active')) {
+    for (let i = 0; i < virtualBtns.length; i++) {
+      if (lang === 'en') {
+        if (arrEn.includes(virtualBtns[i].innerHTML)) {
+          virtualBtns[i].innerHTML = virtualBtns[i].innerHTML.toUpperCase();
+        }
+      } else {
+        if (arrRu.includes(virtualBtns[i].innerHTML)) {
+          virtualBtns[i].innerHTML = virtualBtns[i].innerHTML.toUpperCase();
+        }
+      }
+    }
+  } else {
+    for (let i = 0; i < virtualBtns.length; i++) {
+      if (lang === 'en') {
+        if (arrEn.includes(virtualBtns[i].innerHTML)) {
+          virtualBtns[i].innerHTML = virtualBtns[i].innerHTML.toLowerCase();
+        }
+      } else {
+        if (arrRu.includes(virtualBtns[i].innerHTML)) {
+          virtualBtns[i].innerHTML = virtualBtns[i].innerHTML.toLowerCase();
+        }
+      }
+    }
+  }
+  // document.querySelector('.win-btn').innerHTML = `<?xml version="1.0" ?><!DOCTYPE svg  PUBLIC '-//W3C//DTD SVG 1.1//EN'  'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'><svg id="Capa_1" width="20" height="20" version="1.1" viewBox="0 0 480 480" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><g><path fill="#000" d="M0.2,224L0,68l192-26.1V224H0.2z M224,37.2L479.9,0v224H224V37.2z M480,256l-0.1,224L224,444V256H480z M192,439.9 L0.2,413.6l0-157.6H192V439.9z"/></g></g></svg>`;
+  // document.querySelector('.space-btn').innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M18 9v4H6V9H4v6h16V9z"/></svg>`;
+}
+
+const shiftBtn = document.querySelector('.shift-btn');
+shiftBtn.addEventListener('mousedown', () => {
+  activeShift();
+});
+
+shiftBtn.addEventListener('mouseup', () => {
+  deactivateShift();
 });
 
 const infoText = document.createElement('p');
