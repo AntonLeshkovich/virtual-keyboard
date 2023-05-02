@@ -22,7 +22,7 @@ const btnsRuWithActiveShift = ['ё', '!', '"', '№', ';', '%', ':', '?', '*', '
 const arrEn = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 const arrRu = ['а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'э', 'ю', 'я'];
 const keyboardBtnsCodeEN = ['Backquote', 'Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5', 'Digit6', 'Digit7', 'Digit8', 'Digit9', 'Digit0', 'Minus', 'Equal', 'Backspace', 'Tab', 'KeyQ', 'KeyW', 'KeyE', 'KeyR', 'KeyT', 'KeyY', 'KeyU', 'KeyI', 'KeyO', 'KeyP', 'BracketLeft', 'BracketRight', 'Backslash', 'Delete', 'CapsLock', 'KeyA', 'KeyS', 'KeyD', 'KeyF', 'KeyG', 'KeyH', 'KeyJ', 'KeyK', 'KeyL', 'Semicolon', 'Quote', 'Enter', 'ShiftLeft', 'KeyZ', 'KeyX', 'KeyC', 'KeyV', 'KeyB', 'KeyN', 'KeyM', 'Comma', 'Period', 'Slash', 'ArrowUp', 'ShiftRight', 'ControlLeft', 'MetaLeft', 'AltLeft', 'Space', 'AltRight', 'ArrowLeft', 'ArrowDown', 'ArrowRight', 'ControlRight'];
-const displayedBtnsValues = ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\\', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', "'", 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', '▲', '◄', '▼', '►', 'ё', 'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ', 'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю'];
+const displayedBtnsValues = ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\\', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', "'", 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', '▲', '◄', '▼', '►', 'ё', 'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ', 'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', '~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', '{', '}', '|', ':', '"', '<', '>', '?', '№', '%', '/'];
 
 if (localStorage.getItem('lang')) {
   lang = localStorage.getItem('lang');
@@ -188,144 +188,6 @@ const deleteNextChar = () => {
   textArea.selectionEnd = start;
 }
 
-const virtualBtns = document.querySelectorAll('.virtual__btn');
-
-for (let i = 0; i < virtualBtns.length; i++) {
-  virtualBtns[i].setAttribute('data-keycode', `${keyboardBtnsCodeEN[i]}`);
-}
-
-virtualBtns.forEach((btn) => {
-  btn.addEventListener('click', (e) => {
-    if (displayedBtnsValues.includes(btn.innerHTML.toLowerCase())) {
-      if (e.shiftKey) {
-        textArea.value += btn.innerHTML.toUpperCase();
-      } else {
-        textArea.value += btn.innerHTML;
-      }
-    }
-  });
-});
-
-document.addEventListener('keydown', (e) => {
-  const pressedBtn = e.code;
-  if (document.querySelector(`[data-keycode="${pressedBtn}"]`)) {
-    const pressedVirtualBtn = document.querySelector(`[data-keycode="${pressedBtn}"]`);
-    pressedVirtualBtn.classList.add('virtual__btn-active');
-    if (displayedBtnsValues.includes(pressedVirtualBtn.innerHTML.toLowerCase())) {
-      if (e.shiftKey) {
-        textArea.value += pressedVirtualBtn.innerHTML.toUpperCase();
-      } else {
-        textArea.value += pressedVirtualBtn.innerHTML;
-      }
-    }
-  }
-
-  if (e.shiftKey && e.altKey) {
-    if (lang === 'en') {
-      lang = 'ru';
-    } else {
-      lang = 'en';
-    }
-    changeChars();
-    localStorage.setItem('lang', `${lang}`);
-  }
-
-  if (pressedBtn === 'Enter') {
-    textArea.value += '\n';
-  }
-
-  if (pressedBtn === 'Space') {
-    textArea.value += ' ';
-  }
-
-  if (pressedBtn === 'Tab') {
-    addTab();
-  }
-
-  if (pressedBtn === 'Backspace') {
-    deletePrevChar();
-  }
-
-  if (pressedBtn === 'Delete') {
-    deleteNextChar();
-  }
-
-  if (pressedBtn === 'CapsLock') {
-    toggleActiveCapsLock();
-  }
-});
-
-document.addEventListener('keyup', (e) => {
-  const pressedBtn = e.code;
-  if (document.querySelector(`[data-keycode="${pressedBtn}"]`)) {
-    const pressedVirtualBtn = document.querySelector(`[data-keycode="${pressedBtn}"]`);
-    setTimeout(function() {
-            pressedVirtualBtn.classList.remove('virtual__btn-active');
-        }, 50);
-    }
-  });
-
-const enterBtn = document.querySelector('.enter-btn');
-enterBtn.addEventListener('click', () => {
-  textArea.value += '\n';
-});
-
-const tabBtn = document.querySelector('.tab-btn');
-tabBtn.addEventListener('click', () => {
-  addTab();
-});
-
-const spaceBtn = document.querySelector('.space-btn');
-spaceBtn.addEventListener('click', () => {
-  textArea.value += ' ';
-});
-
-const backspaceBtn = document.querySelector('.backspace-btn');
-backspaceBtn.addEventListener('click', () => {
-  deletePrevChar();
-});
-
-const delBtn = document.querySelector('.del-btn');
-delBtn.addEventListener('click', () => {
-  deleteNextChar();
-});
-
-const capsBtn = document.querySelector('.caps-btn');
-
-const toggleActiveCapsLock = () => {
-  if (capsBtn.classList.contains('caps-indicator-active')) {
-    capsBtn.classList.remove('caps-indicator-active');
-    for (let i = 0; i < virtualBtns.length; i++) {
-      if (lang === 'en') {
-        if (arrEn.includes(virtualBtns[i].innerHTML.toLowerCase())) {
-          virtualBtns[i].innerHTML = virtualBtns[i].innerHTML.toLowerCase();
-        }
-      } else {
-        if (arrRu.includes(virtualBtns[i].innerHTML.toLowerCase())) {
-          virtualBtns[i].innerHTML = virtualBtns[i].innerHTML.toLowerCase();
-        }
-      }
-    }
-  } else {
-    capsBtn.classList.add('caps-indicator-active');
-    for (let i = 0; i < virtualBtns.length; i++) {
-      if (lang === 'en') {
-        if (arrEn.includes(virtualBtns[i].innerHTML)) {
-          virtualBtns[i].innerHTML = virtualBtns[i].innerHTML.toUpperCase();
-        }
-      } else {
-        if (arrRu.includes(virtualBtns[i].innerHTML)) {
-          virtualBtns[i].innerHTML = virtualBtns[i].innerHTML.toUpperCase();
-        }
-      }
-    }
-  }
-}
-
-capsBtn.addEventListener('click', () => {
-  toggleActiveCapsLock();
-});
-
 const activeShift = () => {
   if (capsBtn.classList.contains('caps-indicator-active')) {
     for (let i = 0; i < virtualBtns.length; i++) {
@@ -381,20 +243,182 @@ const deactivateShift = () => {
       }
     }
   }
-  // document.querySelector('.win-btn').innerHTML = `<?xml version="1.0" ?><!DOCTYPE svg  PUBLIC '-//W3C//DTD SVG 1.1//EN'  'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'><svg id="Capa_1" width="20" height="20" version="1.1" viewBox="0 0 480 480" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><g><path fill="#000" d="M0.2,224L0,68l192-26.1V224H0.2z M224,37.2L479.9,0v224H224V37.2z M480,256l-0.1,224L224,444V256H480z M192,439.9 L0.2,413.6l0-157.6H192V439.9z"/></g></g></svg>`;
-  // document.querySelector('.space-btn').innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M18 9v4H6V9H4v6h16V9z"/></svg>`;
 }
 
-const shiftBtn = document.querySelector('.shift-btn');
-shiftBtn.addEventListener('mousedown', () => {
-  activeShift();
+const capsBtn = document.querySelector('.caps-btn');
+
+const toggleActiveCapsLock = () => {
+  if (!capsBtn.classList.contains('caps-indicator-active')) {
+    for (let i = 0; i < virtualBtns.length; i++) {
+      if (lang === 'en') {
+        if (arrEn.includes(virtualBtns[i].innerHTML.toLowerCase())) {
+          virtualBtns[i].innerHTML = virtualBtns[i].innerHTML.toLowerCase();
+        }
+      } else {
+        if (arrRu.includes(virtualBtns[i].innerHTML.toLowerCase())) {
+          virtualBtns[i].innerHTML = virtualBtns[i].innerHTML.toLowerCase();
+        }
+      }
+    }
+  } else {
+    for (let i = 0; i < virtualBtns.length; i++) {
+      if (lang === 'en') {
+        if (arrEn.includes(virtualBtns[i].innerHTML)) {
+          virtualBtns[i].innerHTML = virtualBtns[i].innerHTML.toUpperCase();
+        }
+      } else {
+        if (arrRu.includes(virtualBtns[i].innerHTML)) {
+          virtualBtns[i].innerHTML = virtualBtns[i].innerHTML.toUpperCase();
+        }
+      }
+    }
+  }
+}
+
+const virtualBtns = document.querySelectorAll('.virtual__btn');
+
+for (let i = 0; i < virtualBtns.length; i++) {
+  virtualBtns[i].setAttribute('data-keycode', `${keyboardBtnsCodeEN[i]}`);
+}
+
+virtualBtns.forEach((btn) => {
+  btn.addEventListener('click', (e) => {
+    if (displayedBtnsValues.includes(btn.innerHTML.toLowerCase())) {
+      if (e.shiftKey) {
+        textArea.value += btn.innerHTML.toUpperCase();
+      } else {
+        textArea.value += btn.innerHTML;
+      }
+    }
+  });
 });
 
-shiftBtn.addEventListener('mouseup', () => {
-  deactivateShift();
+document.addEventListener('keydown', (e) => {
+  const pressedBtn = e.code;
+  if (document.querySelector(`[data-keycode="${pressedBtn}"]`)) {
+    const pressedVirtualBtn = document.querySelector(`[data-keycode="${pressedBtn}"]`);
+    pressedVirtualBtn.classList.add('virtual__btn-active');
+    if (displayedBtnsValues.includes(pressedVirtualBtn.innerHTML.toLowerCase())) {
+      if (e.shiftKey) {
+        textArea.value += pressedVirtualBtn.innerHTML.toUpperCase();
+      } else {
+        textArea.value += pressedVirtualBtn.innerHTML;
+      }
+    }
+  }
+
+  if (e.ctrlKey && e.altKey) {
+    if (lang === 'en') {
+      lang = 'ru';
+    } else {
+      lang = 'en';
+    }
+    changeChars();
+    toggleActiveCapsLock();
+    if (capsBtn.classList.contains('caps-indicator-active')) {
+      capsBtn.classList.add('caps-indicator-active');
+    } else {
+      capsBtn.classList.remove('caps-indicator-active');
+    }
+    localStorage.setItem('lang', `${lang}`);
+  }
+
+  if (e.shiftKey) {
+    activeShift();
+  }
+
+  if (pressedBtn === 'Enter') {
+    textArea.value += '\n';
+  }
+
+  if (pressedBtn === 'Space') {
+    textArea.value += ' ';
+  }
+
+  if (pressedBtn === 'Tab') {
+    addTab();
+  }
+
+  if (pressedBtn === 'Backspace') {
+    deletePrevChar();
+  }
+
+  if (pressedBtn === 'Delete') {
+    deleteNextChar();
+  }
+
+  if (pressedBtn === 'CapsLock') {
+    if (capsBtn.classList.contains('caps-indicator-active')) {
+      capsBtn.classList.remove('caps-indicator-active');
+    } else {
+      capsBtn.classList.add('caps-indicator-active');
+    }
+    toggleActiveCapsLock();
+  }
 });
+
+document.addEventListener('keyup', (e) => {
+  const pressedBtn = e.code;
+  if (document.querySelector(`[data-keycode="${pressedBtn}"]`)) {
+    const pressedVirtualBtn = document.querySelector(`[data-keycode="${pressedBtn}"]`);
+    setTimeout(function() {
+      pressedVirtualBtn.classList.remove('virtual__btn-active');
+    }, 50);
+  }
+
+  if (pressedBtn === 'ShiftLeft' || pressedBtn === 'ShiftRight') {
+    deactivateShift();
+  }
+});
+
+const enterBtn = document.querySelector('.enter-btn');
+enterBtn.addEventListener('click', () => {
+  textArea.value += '\n';
+});
+
+const tabBtn = document.querySelector('.tab-btn');
+tabBtn.addEventListener('click', () => {
+  addTab();
+});
+
+const spaceBtn = document.querySelector('.space-btn');
+spaceBtn.addEventListener('click', () => {
+  textArea.value += ' ';
+});
+
+const backspaceBtn = document.querySelector('.backspace-btn');
+backspaceBtn.addEventListener('click', () => {
+  deletePrevChar();
+});
+
+const delBtn = document.querySelector('.del-btn');
+delBtn.addEventListener('click', () => {
+  deleteNextChar();
+});
+
+capsBtn.addEventListener('click', () => {
+  if (!capsBtn.classList.contains('caps-indicator-active')) {
+    capsBtn.classList.add('caps-indicator-active');
+  } else {
+    capsBtn.classList.remove('caps-indicator-active');
+  }
+  toggleActiveCapsLock();
+});
+
+const shiftBtns = document.querySelectorAll('.shift-btn');
+shiftBtns.forEach((btn) => {
+  btn.addEventListener('mousedown', () => {
+    activeShift();
+  });
+})
+
+shiftBtns.forEach((btn) => {
+  btn.addEventListener('mouseup', () => {
+    deactivateShift();
+  });
+})
 
 const infoText = document.createElement('p');
 infoText.className = 'info-text';
-infoText.innerText = 'Клавиатура создана в операционной системе Windows.\nДля переключения языка комбинация: левыe shift + alt.';
+infoText.innerText = 'Клавиатура создана в операционной системе Windows.\nДля переключения языка комбинация: левыe ctrl + alt.';
 body.append(infoText);
