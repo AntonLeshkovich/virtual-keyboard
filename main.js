@@ -298,7 +298,7 @@ document.addEventListener('keydown', (e) => {
   if (document.querySelector(`[data-keycode="${pressedBtn}"]`)) {
     const pressedVirtualBtn = document.querySelector(`[data-keycode="${pressedBtn}"]`);
     pressedVirtualBtn.classList.add('virtual__btn-active');
-    if (displayedBtnsValues.includes(pressedVirtualBtn.innerHTML.toLowerCase())) {
+    if (displayedBtnsValues.includes(pressedVirtualBtn.innerHTML.toLowerCase()) && !document.activeElement === textArea) {
       if (e.shiftKey) {
         textArea.value += pressedVirtualBtn.innerHTML.toUpperCase();
       } else {
