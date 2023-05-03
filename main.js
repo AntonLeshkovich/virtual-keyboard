@@ -295,6 +295,7 @@ virtualBtns.forEach((btn) => {
 
 document.addEventListener('keydown', (e) => {
   const pressedBtn = e.code;
+  e.preventDefault();
   if (document.querySelector(`[data-keycode="${pressedBtn}"]`)) {
     const pressedVirtualBtn = document.querySelector(`[data-keycode="${pressedBtn}"]`);
     pressedVirtualBtn.classList.add('virtual__btn-active');
@@ -355,6 +356,7 @@ document.addEventListener('keydown', (e) => {
     }
     toggleActiveCapsLock();
   }
+
 });
 
 document.addEventListener('keyup', (e) => {
