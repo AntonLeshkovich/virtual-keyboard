@@ -300,11 +300,15 @@ document.addEventListener('keydown', (e) => {
     const pressedVirtualBtn = document.querySelector(`[data-keycode="${pressedBtn}"]`);
     pressedVirtualBtn.classList.add('virtual__btn-active');
     if (displayedBtnsValues.includes(pressedVirtualBtn.innerHTML.toLowerCase())) {
+        const pos = textArea.selectionStart;
+        const charBeforeCursor = textArea.value.substring(0, pos);
+        const charAfterCursor = textArea.value.substring(pos);
       if (e.shiftKey) {
-        textArea.value += pressedVirtualBtn.innerHTML.toUpperCase();
+        textArea.value = charBeforeCursor + pressedVirtualBtn.innerHTML.toUpperCase() + charAfterCursor;
       } else {
-        textArea.value += pressedVirtualBtn.innerHTML;
+        textArea.value = charBeforeCursor + pressedVirtualBtn.innerHTML + charAfterCursor;
       }
+        textArea.selectionStart = textArea.selectionEnd = pos + 1;
     }
   }
 
@@ -341,10 +345,12 @@ document.addEventListener('keydown', (e) => {
   }
 
   if (pressedBtn === 'Backspace') {
+    textArea.focus();
     deletePrevChar();
   }
 
   if (pressedBtn === 'Delete') {
+    textArea.focus();
     deleteNextChar();
   }
 
@@ -390,12 +396,18 @@ spaceBtn.addEventListener('click', () => {
 
 const backspaceBtn = document.querySelector('.backspace-btn');
 backspaceBtn.addEventListener('click', () => {
-  deletePrevChar();
+  if (document.activeElement !== textArea) {
+    textArea.focus();
+    deletePrevChar();
+  }
 });
 
 const delBtn = document.querySelector('.del-btn');
 delBtn.addEventListener('click', () => {
-  deleteNextChar();
+  if (document.activeElement !== textArea) {
+    textArea.focus();
+    deleteNextChar();
+  }
 });
 
 capsBtn.addEventListener('click', () => {
